@@ -1,6 +1,6 @@
 # CS111C Data Structures and Algorithms: Java
 
-Welcome ! This folder contains my solutions and projects of CS111C.
+Welcome ! This folder contains my solutions of homeworks and projects.
 
 Topics covered in this course:
     1. Study of lists, stacks, queues, trees, backtracking, searching, sorting and recursion

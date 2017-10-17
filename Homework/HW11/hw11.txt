@@ -1,0 +1,272 @@
+#Question1
+
+With linear probing, if location k is occupied, we look to see if k+1 is occupied. If it is, we look in k+2, and so on.
+
+A cluster is a group of consecutive locations that are occupied. Large clusters can cause slow processing. Clusters tend to merge with other clusters, compounding the problem.
+
+
+table size = 11
+
+             name    zip-code     age    address
+
+list item#1: Sam , 94121         ,21,   100 Sad Ave.   ,CA
+-->h(100) = 100% 11
+1 is empty
+store voter information (along with key) at position 1
+
+list item#2: Martin, 94122       ,25,   120 Doubtful Ave.,CA
+-->h((120) =120% 11 =10
+10 is empty
+store voter information (along with key) at position 10
+
+list item#3: David, 94112        ,20,   128 Lonely Planet,CA
+-->h(128) = 128%11 =7
+7 is empty
+store voter information (along with key) at position 7
+
+list item#4: Samantha, 94111     ,28,   129 Bear Ave., CA
+-->h(129) = 129%11 = 8
+8 is empty
+store voter information (along with key) at position 8
+
+list item#5: Peter, 94112        ,20,   600 Happy Ave. ,CA
+-->h(601) = 601 % 11 =7 
+7 is occupied
+8 is occupied
+9 is empty
+store voter information (along with key) at position 9
+
+So our function creates the following table:
+location key data
+0
+1        100 other-data
+2
+3
+4
+5
+6        
+7        128 other-data
+8        129 other-data
+9        601 other-data
+10       120 other-data
+
+------------------------------------------------------------------------------
+#Question 2
+After the following statement is executed, in what position is "73 Treble"?
+
+add("73 Treble");
+
+Answer:3 
+
+------------------------------------------------------------------------------
+#Question 3
+After the following statement is executed, in what position is "11 Mason"?
+
+add("11 Mason");
+
+Answer:3
+
+-----------------------------------------------------------------------------
+#Question 4
+
+After the following statement is executed, what is contained in location 1?
+
+remove("81 Manor");
+
+Answer: available
+
+----------------------------------------------------------------------------
+#Question 5
+
+Select what value is in each position of the table after inserting the following keys in this order.
+
+0: 49 Ocean
+1: 22 Irving
+2: 7 California
+3: 8 Greenwich
+4: 78 Mason
+5: 58 Judah
+6: 32 Brannan
+---------------------------------------------------------------------------
+#Question 6
+How many locations do you look in before finding each address listed below? Or, if the address is not in the table, how many locations do you look in before you know the address is not in the table?
+
+700 Parkway	  --->1
+ 
+15 Junipero Serra --->1
+
+85 Capistrano     --->2
+
+135 Great Highway  -->2
+ 
+940 Main Street    -->3
+
+778 Kirkham        -->5
+
+89 California      -->1
+
+350 Powell         -->7
+---------------------------------------------------------------------------
+#Question 7
+You remove the key 940 Main Street. How many locations will you now need to look in to determine that 350 Powell is not in the table?
+
+Answer: 5+2 = 7
+---------------------------------------------------------------------------
+#Question 8
+Select what value is in each position of the table after inserting the following keys in this order.
+
+0: 22 Irving
+1: 78 Mason
+2: null
+3: 58 Judah
+4: null
+5: 49 Ocean
+6: null
+7: 7 California
+8: 8 Greenwich
+9: null
+10: 32 Brannan
+---------------------------------------------------------------------------
+#Question 9
+How many locations do you look in before finding each address listed below? Or, if the address is not in the table, how many locations do you look in before you know the address is not in the table?
+
+700 Parkway -->1
+
+15 Junipero Serra-->1
+
+85 Capistrano-->1
+
+135 Great Highway-->1
+
+940 Main Street-->1
+
+778 Kirkham-->2
+
+89 California-->1
+
+350 Powell-->2
+--------------------------------------------------------------------------
+#Question 10
+Select what position each value is in after inserting the following keys in this order.
+
+22 Irving-->1
+
+49 Ocean-->0
+
+7 California-->0
+
+8 Greenwich-->1
+
+78 Mason-->1
+
+58 Judah-->2
+
+32 Brannan-->4
+--------------------------------------------------------------------------
+#Question 11
+@Override
+   public boolean equals(Object variable) {
+       boolean theSame= true;
+       if (variable == null){
+           return (!theSame);
+      }
+       if (!(variable instanceof Student)){
+           return (!theSame);
+      }
+       Student student = (Student) variable;
+       boolean check1 = (this.firstName == student.firstName);
+       boolean check2 = (this.gpa == student.gpa);
+       boolean check3 = (this.tuitionPaid = student.tuitionPaid);
+       if (check1 == check2 && check2 == check3 && check1 == check3){
+           return theSame;
+       else{
+           return (!theSame);
+           }
+        }
+   }
+ @Override
+   public int hashCode() {
+      int output1 = (int) firstName.hashCode()*lastName.hashCode();
+      int output2 = (int) tuitionPaid*gpa.hashCode();
+       return (output1*output2);
+   }
+-------------------------------------------------------------------------
+#Question 12
+
+   public static HashMap<String, Employee> getEmployeeHash(ArrayList<Employee> employeeList){
+       HashMap<String,Employee> hashing = new HashMap<String,Employee>();
+       Iterator<Employee> iterate = employeeList.iterator();
+       Employee temp = null;
+       while(iterate.hasNext()){
+           temp = iterate.next();
+           hashing.put(temp.getEmpID(), temp);          
+       }
+      return hashing;  
+   }
+-------------------------------------------------------------------------
+#Question 13
+//Part1 
+public static ArrayList<Employee> getEmployeeBonusList(HashMap<String, Employee> employeeMap, ArrayList<String> employeeIDs){
+       ArrayList<Employee> employeeList = new ArrayList<Employee>();
+       int i =0;
+       while (i<employeeIDs.size()){
+           if(employeeMap.get(employeeIDs.get(i)) != null){
+               employeeList.add(employeeMap.get(employeeIDs.get(i)));
+           }
+           i++;
+       }
+       return employeeList;
+   }
+//Part2
+public class Student {
+	private String firstName, lastName;
+	private boolean tuitionPaid;
+	private double gpa;
+	public Student(String firstName, String lastName, boolean tuitionPaid, double gpa, boolean bonus) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.tuitionPaid = tuitionPaid;
+		this.gpa = gpa;
+		this.bonus= bonus;	//ADDED
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public boolean isTuitionPaid() {
+		return tuitionPaid;
+	}
+	public void setTuitionPaid(boolean tuitionPaid) {
+		this.tuitionPaid = tuitionPaid;
+	}
+	public double getGpa() {
+		return gpa;
+	}
+	public void setGpa(double gpa) {
+		if(gpa >= 0 && gpa <= 4) {
+			this.gpa = gpa;
+		}
+	}
+	public boolean isBonus(){  //ADDED
+		return bonus;
+	}
+	public void setBonus(boolean bonus){ //ADDED
+		this.bonus = bonus;
+	}
+	@Override
+	public String toString() {
+		return firstName + " " + lastName + 
+				"\n\tTuition Paid: " +  tuitionPaid +
+				"\n\tGPA: " + gpa +
+				"\n\tBonus: " + bonus;  //ADDED
+	}
+}
+------------------------------------------------------------------------------
