@@ -50,7 +50,15 @@ public class NBody {
     }
 
    public static void main(String[] args) {
+
+		/*
+		Optional: For a beginning touch, play a MID audio file by using StdAudio
+		Remark: We need to use " " instead of '' in Java.
+		*/		
+		String file= "audio/2001.mid";
+		StdAudio.play(file);
     	/*
+
     	/*
 		Collecting All Needed Input 
     	*/
@@ -157,6 +165,14 @@ public class NBody {
 		for (int i = 0; i < planets.length; i++) {
 			StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
    			planets[i].xxPos, planets[i].yyPos, planets[i].xxVel, planets[i].yyVel, planets[i].mass, planets[i].imgFileName);	
-		}			
+		}
+
+		/*
+		Optional: For a beginning touch, play a MID audio file by using StdAudio
+		Remark: We need to use " " instead of '' in Java.
+		*/		
+		String file1= "audio/faded.mid";
+		StdAudio.play(file1);
+    	
     }
  }
