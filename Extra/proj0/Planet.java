@@ -30,21 +30,21 @@ public class Planet {
     }
     
     public double calcDistance(Planet p){
-    /*
+        /*
          Distance(r) = sqrt((x2-x1)^2 + (y2-y1)^2)
-    */
+        */
         
         return Math.sqrt((this.xxPos - p.xxPos)*(this.xxPos- p.xxPos)
                        + (this.yyPos - p.yyPos)*(this.yyPos-p.yyPos));
     }
     
     public double calcForceExertedBy(Planet p){
-    /*
+        /*
         F = gForce * this.mass * p.mass/r^2
         r can be calculated by calcDistance above
         Math.pow(x,y) = x^y
         gForce is given as 6.67 * 10^-11 (unit)
-    */
+         */
         
         double gForce = 6.67*Math.pow(10,-11);
         double r2 = calcDistance(p)*calcDistance(p);
@@ -52,19 +52,15 @@ public class Planet {
     }
     
     public double calcForceExertedByX(Planet p){
-    /*
+        /*
         Fx = F * dx/r
-        dx = |this.xxPos- p.xxPos|
+        dx = |p.xxPos- this.xxPos|
         r  can be calculated by CalcDistance above
-    */
+        */
         
         double F = calcForceExertedBy(p);
         double dx = 0;
-        if (this.xxPos - p.xxPos > 0){
-            dx = this.xxPos - p.xxPos;
-        }else{
-            dx = p.xxPos - this.xxPos;
-        }
+        dx = p.xxPos - this.xxPos;
         double r = calcDistance(p);
         return F*dx/r;
     }
@@ -72,17 +68,13 @@ public class Planet {
     public double calcForceExertedByY(Planet p){
         /*
          Fy = F * dy/r
-         dy = |this.yyPos- p.yyPos|
+         dy = |p.yyPos- this.yyPos|
          r  can be calculated by CalcDistance above
          */
         
         double F = calcForceExertedBy(p);
         double dy = 0;
-        if (this.yyPos - p.yyPos > 0){
-            dy = this.yyPos - p.yyPos;
-        }else{
-            dy = p.yyPos - this.yyPos;
-        }
+        dy = p.yyPos - this.yyPos;
         double r = calcDistance(p);
         return F*dy/r;
     }
